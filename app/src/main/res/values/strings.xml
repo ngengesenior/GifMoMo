@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">GifMoMo</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="request_otp">Request OTP</string>
+    <string name="create_account">Create account</string>
+    <string name="generic_error">Something wrong happened. Please try again.</string>
+    <string name="code_sent">Code sent</string>
+    <string name="verification_complete">Verification completed.Signing in User</string>
+    <string name="creating_account">Hang on, we are creating your account.</string>
+    <string name="verification_failed_try_again">Verification failed.Please check your phone number and try again.</string>
+    <string name="quota_exceeded">Too many OTP requests sent. Please try authentication in 3 minutes.</string>
+    <string name="phone_auth_success">Phone authentication successful</string>
+    <string name="invalid_code">The code entered is invalid</string>
+    <string name="code">Code</string>
+    <string name="verify_code">Verify Code</string>
+    <string name="account_creation_success">Your account has been created successfully</string>
+    <string name="anonymous_account_create_success">Anonymous account created successfully</string>
+    <string name="cameroon_code">+237</string>
+    <string name="verify_phone">Verify Your Phone Number</string>
+    <string name="next">Next</string>
+    <string name="code_will_be_sent">A code will be sent to your number</string>
+    <string name="gif_momo_sign_up_message">GifMoMo will send an SMS message (carrier charges may apply) to verify your phone number.</string>
+    <string name="enter_digits_code">Enter the 6-digit code</string>
+    <string name="try_">Try again</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="confirm_payment_prompt">Confirm payment on your phone when prompted or dial *126#</string>
+
 </resources>
