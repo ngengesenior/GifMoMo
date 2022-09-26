@@ -27,7 +27,7 @@ data class Campaign(
 )
 
 val fakeCampaign = Campaign(
-    title = "Random Title",
+    title = "Roger's Hospital bill",
     creatorId = UUID.randomUUID().toString(),
     targetAmount = 230000,
     currentRaised = 100000,

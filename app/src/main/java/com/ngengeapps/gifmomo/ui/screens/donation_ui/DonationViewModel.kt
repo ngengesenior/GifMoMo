@@ -24,14 +24,17 @@ class DonationViewModel @Inject constructor(private val camPay: CamPay) :ViewMod
     private val _paymentRequestResponse:MutableStateFlow<PaymentResponse> = MutableStateFlow(PaymentResponse.NotInitialized)
     val paymentRequestResponse:StateFlow<PaymentResponse> get() = _paymentRequestResponse
 
+    val showDialog:MutableStateFlow<Boolean> = MutableStateFlow(false)
+
 
     fun onAmountChange(amount:String){
         _donationAmount.value = amount
     }
 
     fun makePayment(paymentBody:CollectionRequest){
+        showDialog.value = true
         _paymentRequestResponse.value = PaymentResponse.Loading
-        camPay.collect(
+        val req = camPay.collect(
             CollectionRequest
                 .CollectionRequestBuilder
                 .aCollectionRequest()
@@ -43,7 +46,7 @@ class DonationViewModel @Inject constructor(private val camPay: CamPay) :ViewMod
                 .build())
             .delay(20,TimeUnit.SECONDS)
             .switchMap { collectionResponse->
-                _paymentRequestResponse.value = PaymentResponse.PaymentInitialized(collectionResponse)
+                _paymentRequestResponse.value = PaymentResponse.PaymentInitialized
                 camPay.transactionStatus(collectionResponse.reference)
 
                 camPay.transactionStatus(collectionResponse.reference)
@@ -55,7 +58,12 @@ class DonationViewModel @Inject constructor(private val camPay: CamPay) :ViewMod
             }.subscribe {
                 if (it.status.lowercase(Locale.getDefault()) == "failed"){
                     _paymentRequestResponse.value = PaymentResponse.PaymentFailed("Failed")
-                } else if(it.status == "")
+                } else if(it.status.lowercase() == "successful") {
+                    showDialog.value = false
+                    _paymentRequestResponse.value = PaymentResponse.PaymentSucceeded
+                } else if (it.status.lowercase() == "pending"){
+                    _paymentRequestResponse.value = PaymentResponse.PaymentInitialized
+                }
                 Log.d(TAG, "makePayment: $it")
             }
     }

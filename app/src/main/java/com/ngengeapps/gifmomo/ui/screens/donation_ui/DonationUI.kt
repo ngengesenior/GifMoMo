@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
@@ -19,6 +20,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,10 +32,12 @@ import net.compay.android.models.requests.CollectionRequest
 import java.util.UUID
 
 
+@ExperimentalComposeUiApi
 @Composable
 fun DonationUI(viewModel: DonationViewModel = hiltViewModel()) {
     val donationAmount: String by viewModel.donationAmount.collectAsState(initial = "")
     val focusManager = LocalFocusManager.current
+    val showDialog by viewModel.showDialog.collectAsState(initial = false)
 
     Scaffold(topBar = {
         GifToolbar(title = "How much are you donating?")
@@ -106,6 +111,18 @@ fun DonationUI(viewModel: DonationViewModel = hiltViewModel()) {
                 }, text = "Share",
                 modifier = Modifier.fillMaxWidth()
             )
+
+            if (showDialog) {
+                Dialog(onDismissRequest = {  }, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+                    Box(modifier = Modifier.size(200.dp), contentAlignment = Alignment.Center){
+                        Column {
+                            CircularProgressIndicator()
+                            Text(text = "Confirm payment when prompter or dial *126#")
+                        }
+                    }
+
+                }
+            }
         }
 
     }
