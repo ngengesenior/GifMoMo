@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         hideSystemBars()
         mainActivity = this
-        Places.initialize(this, BuildConfig.MAPS_API_KEY)
         super.onCreate(savedInstanceState)
         setContent {
             val authVm: AuthViewModel = viewModel()

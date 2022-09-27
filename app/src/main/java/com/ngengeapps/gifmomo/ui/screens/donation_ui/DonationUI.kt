@@ -90,13 +90,13 @@ fun DonationUI(viewModel: DonationViewModel = hiltViewModel()) {
 
             MainGifMoMoButton(
                 onClick = {
-                          val request = CollectionRequest.CollectionRequestBuilder.aCollectionRequest()
-                              .withAmount("100")
-                              .withCurrency("XAF")
-                              .withFrom(Firebase.auth.currentUser?.phoneNumber)
-                              .withExternalReference(UUID.randomUUID().toString())
-                              .withDescription("Sample description")
-                              .build()
+                    val request = CollectionRequest.CollectionRequestBuilder.aCollectionRequest()
+                        .withAmount("100")
+                        .withCurrency("XAF")
+                        .withFrom(Firebase.auth.currentUser?.phoneNumber)
+                        .withExternalReference(UUID.randomUUID().toString())
+                        .withDescription("Sample description")
+                        .build()
                     viewModel.makePayment(request)
 
                 }, text = "Donate",

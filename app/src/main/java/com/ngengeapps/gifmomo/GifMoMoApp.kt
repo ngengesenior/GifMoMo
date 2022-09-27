@@ -40,92 +40,87 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 fun GifMoMoApp(authViewModel: AuthViewModel) {
     GifMoMoTheme {
-        Surface(color = MaterialTheme.colors.background) {
-            val appState = rememberAppState()
-            Scaffold(
-                scaffoldState = appState.scaffoldState,
-                snackbarHost = {
-                    SnackbarHost(hostState = it,
-                        modifier = Modifier.padding(8.dp),
-                        snackbar = { snackbarData ->
-                            Snackbar(snackbarData, contentColor = MaterialTheme.colors.onPrimary)
-                        })
-                }) { innerPadding ->
 
-                val splashVm:SplashViewModel = hiltViewModel()
-                val categoryViewModel: CampaignViewModel = hiltViewModel()
-                val createVm:CampaignViewModel = hiltViewModel()
-
-                        NavHost(
-                    navController = appState.navController,
-                    modifier = Modifier.padding(innerPadding),
-                    startDestination = SPLASH_SCREEN
-                ) {
-
-                    composable(LOGIN_SCREEN) {
-                        PhoneLoginUI(navController = appState.navController,
-                            viewModel = authViewModel, restartLogin = {
-                            appState.clearAndNavigate(SPLASH_SCREEN)
-                        }, destination = MAIN_SCREEN)
-                    }
-
-                            composable(MAIN_SCREEN) {
-                                HomeUI(onNavigate = {
-                                    appState.navigate(CREATE_RAISER_SCREEN)
-                                }, onNavigateToPay = {
-                                    appState.navigate(PAYMENT_SCREEN)
-                                })
-                            }
-
-                    composable(SPLASH_SCREEN){
-                        SplashScreenUI(viewModel = splashVm) {
-                            if (it.isNotEmpty()) {
-                                appState.navController.navigate(it)
-                            }
-                        }
-                    }
-
-
-                    composable(SIGN_UP_SCREEN) {
-                        SignUpUI(popUpScreen = {
-                            appState.clearAndNavigate(MAIN_SCREEN)
-
-                        })
-                    }
-
-                    composable(PAYMENT_SCREEN){
-                        DonationUI()
-                    }
-
-                    composable(CREATE_RAISER_SCREEN) {
-                        CreateCampaignUi(viewModel =createVm, onCreateSuccess = {
-                            appState.navController.navigateUp()
-
-                        }, openCategoryRoute = {} )
-
-
-                    }
-                    dialog(
-                        SELECT_CATEGORY_DIALOG,
-                        dialogProperties = DialogProperties(
-                            dismissOnBackPress = true,
-                            dismissOnClickOutside = false,
-                            usePlatformDefaultWidth = true
-                        )
-                    ) {
-                        SelectCategoryUi(closeDialog = {
-                            appState.popUp()
-                        }, viewModel = categoryViewModel)
-                    }
-
-                }
-
-            }
-
-        }
     }
 }
 
+/**
+ * Surface(color = MaterialTheme.colors.background) {
+val appState = rememberAppState()
+Scaffold(
+scaffoldState = appState.scaffoldState,
+snackbarHost = {
+SnackbarHost(hostState = it,
+modifier = Modifier.padding(8.dp),
+snackbar = { snackbarData ->
+Snackbar(snackbarData, contentColor = MaterialTheme.colors.onPrimary)
+})
+}) { innerPadding ->
+
+val splashVm:SplashViewModel = hiltViewModel()
+val categoryViewModel: CampaignViewModel = hiltViewModel()
+val createVm:CampaignViewModel = hiltViewModel()
+
+NavHost(
+navController = appState.navController,
+modifier = Modifier.padding(innerPadding),
+startDestination = SPLASH_SCREEN
+) {
+
+composable(LOGIN_SCREEN) {
+PhoneLoginUI(navController = appState.navController,
+viewModel = authViewModel, restartLogin = {
+appState.clearAndNavigate(SPLASH_SCREEN)
+}, destination = MAIN_SCREEN)
+}
+
+composable(MAIN_SCREEN) {
+HomeUI(onNavigate = {
+appState.navigate(CREATE_RAISER_SCREEN)
+}, onNavigateToPay = {
+appState.navigate(PAYMENT_SCREEN)
+})
+}
+
+
+composable(SIGN_UP_SCREEN) {
+SignUpUI(popUpScreen = {
+appState.clearAndNavigate(MAIN_SCREEN)
+
+})
+}
+
+composable(PAYMENT_SCREEN){
+DonationUI()
+}
+
+composable(CREATE_RAISER_SCREEN) {
+CreateCampaignUi(viewModel =createVm, onCreateSuccess = {
+appState.navController.navigateUp()
+
+}, openCategoryRoute = {} )
+
+
+}
+dialog(
+SELECT_CATEGORY_DIALOG,
+dialogProperties = DialogProperties(
+dismissOnBackPress = true,
+dismissOnClickOutside = false,
+usePlatformDefaultWidth = true
+)
+) {
+SelectCategoryUi(closeDialog = {
+appState.popUp()
+}, viewModel = categoryViewModel)
+}
+
+}
+
+}
+
+}
+ */
 
 @Composable
 fun rememberAppState(

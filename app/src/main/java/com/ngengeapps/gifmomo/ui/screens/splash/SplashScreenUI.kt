@@ -20,8 +20,7 @@ import com.ngengeapps.gifmomo.R
 
 @Composable
 //@Preview(showBackground = true, showSystemUi = true)
-fun SplashScreenUI(viewModel: SplashViewModel,
-                   onNavigateTo:(String)-> Unit) {
+fun SplashScreenUI() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -30,11 +29,11 @@ fun SplashScreenUI(viewModel: SplashViewModel,
         verticalArrangement = Arrangement.Center
     ) {
 
-        val destination by viewModel.destination.collectAsState(initial = "")
+        /*val destination by viewModel.destination.collectAsState(initial = "")
 
         if (destination.isNotEmpty()) {
             onNavigateTo(destination)
-        }
+        }*/
 
         Text(
             stringResource(R.string.app_name),
