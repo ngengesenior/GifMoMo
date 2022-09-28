@@ -5,10 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.ngengeapps.gifmomo.MainActivity
 import com.ngengeapps.gifmomo.common.snackbar.SnackbarManager
 import dagger.Module
 import dagger.Provides
@@ -32,9 +29,6 @@ object AppModule {
     @Provides
     fun provideSnackbarManager(): SnackbarManager = SnackbarManager
 
-    @Singleton
-    @Provides
-    fun provideMainActivity(): MainActivity = MainActivity.getInstance() as MainActivity
 
     @Singleton
     @Provides

@@ -12,7 +12,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.lifecycle.lifecycleScope
 import com.ngengeapps.gifmomo.LOGIN_SCREEN
 import com.ngengeapps.gifmomo.MAIN_SCREEN
-import com.ngengeapps.gifmomo.MainActivity
 import com.ngengeapps.gifmomo.ui.screens.main.HomeActivity
 import com.ngengeapps.gifmomo.ui.screens.phone_login.PhoneSignInActivity
 import dagger.hilt.android.AndroidEntryPoint

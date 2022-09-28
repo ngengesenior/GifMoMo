@@ -1,5 +1,7 @@
 package com.ngengeapps.gifmomo.model.service.impl
 
+import android.app.Activity
+import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
@@ -11,13 +13,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.ngengeapps.gifmomo.MainActivity
 import com.ngengeapps.gifmomo.R
 import com.ngengeapps.gifmomo.common.snackbar.SnackbarManager
 import com.ngengeapps.gifmomo.common.snackbar.SnackbarMessage.Companion.toSnackbarMessage
 import com.ngengeapps.gifmomo.model.Response
 import com.ngengeapps.gifmomo.model.User
 import com.ngengeapps.gifmomo.model.service.AccountService
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -29,7 +31,7 @@ import com.ngengeapps.gifmomo.R.string as AppText
 @ExperimentalMaterialApi
 class AccountServiceImpl @Inject constructor(
     private val snackbarManager: SnackbarManager,
-    private val context: MainActivity
+    @ApplicationContext private val context: Context
 ) : AccountService
 {
     private val TAG = AccountService::class.java.simpleName
@@ -86,7 +88,7 @@ class AccountServiceImpl @Inject constructor(
 
     private val authBuilder: PhoneAuthOptions.Builder = PhoneAuthOptions.newBuilder(auth)
         .setCallbacks(authCallbacks)
-        .setActivity(context)
+        //.setActivity(context as Activity)
         .setTimeout(120L, TimeUnit.SECONDS)
 
     private fun signInWithAuthCredential(credential: PhoneAuthCredential) {

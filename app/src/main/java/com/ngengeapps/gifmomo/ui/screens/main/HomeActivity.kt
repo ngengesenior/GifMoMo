@@ -8,8 +8,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import com.ngengeapps.gifmomo.R
 import com.ngengeapps.gifmomo.ui.screens.donation_ui.DonationActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalFoundationApi
+@AndroidEntryPoint
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

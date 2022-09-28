@@ -1,3 +1,4 @@
+/*
 package com.ngengeapps.gifmomo
 
 import android.os.Bundle
@@ -29,17 +30,14 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideSystemBars()
-        mainActivity = this
         super.onCreate(savedInstanceState)
         setContent {
-            val authVm: AuthViewModel = viewModel()
-            GifMoMoApp(authVm)
+
         }
     }
 
     override fun onResume() {
         super.onResume()
-        mainActivity = this
     }
 
     override fun onRestart() {
@@ -68,3 +66,4 @@ class MainActivity : ComponentActivity() {
 }
 
 
+*/

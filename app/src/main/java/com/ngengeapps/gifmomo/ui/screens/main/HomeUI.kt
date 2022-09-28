@@ -20,6 +20,7 @@ import com.ngengeapps.gifmomo.ui.CampaignItem
 
 @ExperimentalFoundationApi
 @Composable
+
 fun HomeUI(
     onNavigate:()->Unit,
     onNavigateToPay:()->Unit
