@@ -62,6 +62,7 @@ class DonationActivity : AppCompatActivity() {
                 when(it) {
                     is PaymentResponse.PaymentSucceeded,is PaymentResponse.PaymentFailed -> {
                         progressDialog.hide()
+                        finish()
                     }
                     else -> {}
                 }
